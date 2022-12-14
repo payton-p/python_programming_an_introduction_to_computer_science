@@ -9,3 +9,6 @@ This project correlates to the *Python Programming: An Introduction to Computer 
 
 ## Project details 
 - Python 3.11.1 
+
+## Notes
+Largely, the comments in the code throughout this repo paraphrase or quote the textbook. In some places, examples have been taken from other online resources.

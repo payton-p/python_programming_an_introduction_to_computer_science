@@ -3,8 +3,9 @@ This project correlates to the *Python Programming: An Introduction to Computer 
 
 ## Installation
 - Download and install Python
+- Download PyCharm
 - Clone repo locally 
-- Open in IDLE 
+- Open projects in PyCharm (or IDLE if you prefer) 
 - Run the relevant program(s)
 
 ## Project details 

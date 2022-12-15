@@ -5,9 +5,9 @@ from config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE, _root
 
 
 class TextBox(GraphicsObject):
-    def __init__(self, p, width):
+    def __init__(self, point, width):
         GraphicsObject.__init__(self, [])
-        self.anchor = p.clone()
+        self.anchor = point.clone()
         self.width = width
         self.text = tk.StringVar(_root)
         self.text.set("")
@@ -42,7 +42,7 @@ class TextBox(GraphicsObject):
         other.text = tk.StringVar()
         other.text.set(self.text.get())
         other.fill = self.fill
-        
+
         return other
 
     def set_text(self, t):

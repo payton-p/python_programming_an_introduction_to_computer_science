@@ -1,14 +1,13 @@
 import tkinter as tk
 from graphics_object import GraphicsObject
 from graphics_error import GraphicsError
-from config import DEFAULT_CONFIG, BAD_OPTION, _root
+from config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE, _root
 
 
 class TextBox(GraphicsObject):
     def __init__(self, p, width):
         GraphicsObject.__init__(self, [])
         self.anchor = p.clone()
-        # print self.anchor
         self.width = width
         self.text = tk.StringVar(_root)
         self.text.set("")
@@ -21,14 +20,11 @@ class TextBox(GraphicsObject):
         p = self.anchor
         x, y = canvas.to_screen(p.x, p.y)
         frm = tk.Frame(canvas.master)
-        self.text_box = tk.Entry(frm,
-                                 width=self.width,
-                                 textvariable=self.text,
-                                 bg=self.fill,
-                                 fg=self.color,
+        self.text_box = tk.Entry(frm, width=self.width, textvariable=self.text, bg=self.fill, fg=self.color,
                                  font=self.font)
         self.text_box.pack()
-        # self.set_fill(self.fill)
+        self.set_fill(self.fill)
+
         return canvas.create_window(x, y, window=frm)
 
     def get_text(self):
@@ -46,6 +42,7 @@ class TextBox(GraphicsObject):
         other.text = tk.StringVar()
         other.text.set(self.text.get())
         other.fill = self.fill
+        
         return other
 
     def set_text(self, t):
@@ -67,19 +64,19 @@ class TextBox(GraphicsObject):
         if face in ['helvetica', 'arial', 'courier', 'times roman']:
             self._set_font_component(0, face)
         else:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_size(self, size):
         if 5 <= size <= 36:
             self._set_font_component(1, size)
         else:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_style(self, style):
         if style in ['bold', 'normal', 'italic', 'bold italic']:
             self._set_font_component(2, style)
         else:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_text_color(self, color):
         self.color = color

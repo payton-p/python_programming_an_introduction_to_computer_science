@@ -10,6 +10,7 @@ class Point(GraphicsObject):
 
     def _draw(self, canvas, options):
         x, y = canvas.to_screen(self.x, self.y)
+
         return canvas.create_rectangle(x, y, x + 1, y + 1, options)
 
     def _move(self, dx, dy):
@@ -19,8 +20,11 @@ class Point(GraphicsObject):
     def clone(self):
         other = Point(self.x, self.y)
         other.config = self.config.copy()
+
         return other
 
-    def get_x(self): return self.x
+    def get_x(self):
+        return self.x
 
-    def get_y(self): return self.y
+    def get_y(self):
+        return self.y

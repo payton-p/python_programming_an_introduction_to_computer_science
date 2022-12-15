@@ -8,6 +8,7 @@ class Oval(_BoundingBox):
     def clone(self):
         other = Oval(self.p1, self.p2)
         other.config = self.config.copy()
+
         return other
 
     def _draw(self, canvas, options):
@@ -15,4 +16,5 @@ class Oval(_BoundingBox):
         p2 = self.p2
         x1, y1 = canvas.to_screen(p1.x, p1.y)
         x2, y2 = canvas.to_screen(p2.x, p2.y)
+        
         return canvas.create_oval(x1, y1, x2, y2, options)

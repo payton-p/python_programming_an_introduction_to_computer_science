@@ -1,6 +1,6 @@
 from _bounding_box import _BoundingBox
 from graphics_error import GraphicsError
-from config import DEFAULT_CONFIG, BAD_OPTION
+from config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE
 
 
 class Line(_BoundingBox):
@@ -12,6 +12,7 @@ class Line(_BoundingBox):
     def clone(self):
         other = Line(self.p1, self.p2)
         other.config = self.config.copy()
+
         return other
 
     def _draw(self, canvas, options):
@@ -19,9 +20,11 @@ class Line(_BoundingBox):
         p2 = self.p2
         x1, y1 = canvas.to_screen(p1.x, p1.y)
         x2, y2 = canvas.to_screen(p2.x, p2.y)
+
         return canvas.create_line(x1, y1, x2, y2, options)
 
     def set_arrow(self, option):
         if option not in ["first", "last", "both", "none"]:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
+        
         self._reconfig("arrow", option)

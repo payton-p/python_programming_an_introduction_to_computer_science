@@ -1,6 +1,6 @@
 from graphics_object import GraphicsObject
 from graphics_error import GraphicsError
-from config import DEFAULT_CONFIG, BAD_OPTION
+from config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE
 
 
 class Text(GraphicsObject):
@@ -14,6 +14,7 @@ class Text(GraphicsObject):
     def _draw(self, canvas, options):
         p = self.anchor
         x, y = canvas.to_screen(p.x, p.y)
+
         return canvas.create_text(x, y, options)
 
     def _move(self, dx, dy):
@@ -22,6 +23,7 @@ class Text(GraphicsObject):
     def clone(self):
         other = Text(self.anchor, self.config['text'])
         other.config = self.config.copy()
+        
         return other
 
     def set_text(self, text):
@@ -38,21 +40,21 @@ class Text(GraphicsObject):
             f, s, b = self.config['font']
             self._reconfig("font", (face, s, b))
         else:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_size(self, size):
         if 5 <= size <= 36:
             f, s, b = self.config['font']
             self._reconfig("font", (f, size, b))
         else:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_style(self, style):
         if style in ['bold', 'normal', 'italic', 'bold italic']:
             f, s, b = self.config['font']
             self._reconfig("font", (f, s, style))
         else:
-            raise GraphicsError(BAD_OPTION)
+            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_text_color(self, color):
         self.set_fill(color)

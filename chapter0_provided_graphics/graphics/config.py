@@ -1,12 +1,13 @@
 import tkinter as tk
 
-OBJ_ALREADY_DRAWN = "Object currently drawn"
-UNSUPPORTED_METHOD = "Object doesn't support operation"
-BAD_OPTION = "Illegal option value"
-DEAD_THREAD = "Graphics thread quit unexpectedly"
-
 _root = tk.Tk()
 _root.withdraw()
+
+BAD_OPTION_ERROR_MESSAGE = "Illegal option value."
+CLOSED_WINDOW_ERROR_MESSAGE = "Window is closed."
+DEAD_THREAD_ERROR_MESSAGE = "Graphics thread quit unexpectedly."
+OBJ_ALREADY_DRAWN_ERROR_MESSAGE = "Object currently drawn."
+UNSUPPORTED_METHOD_ERROR_MESSAGE = "Object doesn't support operation."
 
 # Default values for various item configuration options. Only a subset of
 # keys may be present in the configuration dictionary for a given item.

@@ -3,11 +3,11 @@ import time
 from graphics_error import GraphicsError
 from transform import Transform
 from point import Point
-from config import _root
+from config import _root, CLOSED_WINDOW_ERROR_MESSAGE
 
 
 class GraphicsWindow(tk.Canvas):
-    """A GraphWin is a toplevel window for displaying graphics."""
+    """A GraphicsWindow is a toplevel window for displaying graphics."""
 
     def __init__(self, title="Graphics Window", width=200, height=200, autoflush=True):
         master = tk.Toplevel(_root)
@@ -28,15 +28,17 @@ class GraphicsWindow(tk.Canvas):
         self.trans = None
         self.closed = False
         master.lift()
+
         if autoflush:
             _root.update()
 
     def __check_open(self):
         if self.closed:
-            raise GraphicsError("window is closed")
+            raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
 
     def set_background(self, color):
-        """Set background color of the window"""
+        """Set background color of the window."""
+
         self.__check_open()
         self.config(bg=color)
         self.__autoflush()
@@ -45,13 +47,15 @@ class GraphicsWindow(tk.Canvas):
         """Set coordinates of window to run from (x1,y1) in the
         lower-left corner to (x2,y2) in the upper-right corner.
         """
+
         self.trans = Transform(self.width, self.height, x1, y1, x2, y2)
 
     def close(self):
-        """Close the window"""
+        """Close the window."""
 
         if self.closed:
             return
+
         self.closed = True
         self.master.destroy()
         self.__autoflush()
@@ -67,7 +71,8 @@ class GraphicsWindow(tk.Canvas):
             _root.update()
 
     def plot(self, x, y, color="black"):
-        """Set pixel (x,y) to the given color"""
+        """Set pixel (x,y) to the given color."""
+
         self.__check_open()
         xs, ys = self.to_screen(x, y)
         self.create_line(xs, ys, xs + 1, ys, fill=color)
@@ -75,55 +80,65 @@ class GraphicsWindow(tk.Canvas):
 
     def plot_pixel(self, x, y, color="black"):
         """Set pixel raw (independent of window coordinates) pixel
-        (x,y) to color
+        (x,y) to given color.
         """
+
         self.__check_open()
         self.create_line(x, y, x + 1, y, fill=color)
         self.__autoflush()
 
     def flush(self):
-        """Update drawing to the window"""
+        """Update drawing to the window."""
+
         self.__check_open()
         self.update_idletasks()
 
     def get_mouse(self):
         """Wait for mouse click and return Point object representing
-        the click
+        the click.
         """
+
         self.update()  # flush any prior clicks
         self.mouseX = None
         self.mouseY = None
         while self.mouseX is None or self.mouseY is None:
             self.update()
             if self.is_closed():
-                raise GraphicsError("get_mouse in closed window")
+                raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
             time.sleep(.1)  # give up thread
+
         x, y = self.to_world(self.mouseX, self.mouseY)
         self.mouseX = None
         self.mouseY = None
+
         return Point(x, y)
 
     def check_mouse(self):
         """Return last mouse click or None if mouse has
-        not been clicked since last call
+        not been clicked since last call.
         """
+
         if self.is_closed():
-            raise GraphicsError("check_mouse in closed window")
+            raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
+
         self.update()
         if self.mouseX is not None and self.mouseY is not None:
             x, y = self.to_world(self.mouseX, self.mouseY)
             self.mouseX = None
             self.mouseY = None
+
             return Point(x, y)
         else:
             return None
 
     def get_height(self):
-        """Return the height of the window"""
+        """Return the height of the window."""
+
         return self.height
 
     def get_width(self):
-        """Return the width of the window"""
+        """Return the width of the window."""
+
         return self.width
 
     def to_screen(self, x, y):

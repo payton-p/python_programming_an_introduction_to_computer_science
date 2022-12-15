@@ -5,8 +5,7 @@ from graphics_window import GraphicsWindow
 
 class Polygon(GraphicsObject):
     def __init__(self, *points):
-        # if points passed as a list, extract it
-
+        # If points passed as a list, extract it
         if len(points) == 1 and isinstance(points[0], type([])):
             points = points[0]
         self.points = list(map(Point.clone, points))
@@ -15,6 +14,7 @@ class Polygon(GraphicsObject):
     def clone(self):
         other = Polygon(*self.points)
         other.config = self.config.copy()
+
         return other
 
     def get_points(self):
@@ -31,4 +31,5 @@ class Polygon(GraphicsObject):
             args.append(x)
             args.append(y)
         args.append(options)
+        
         return GraphicsWindow.create_polygon(*args)

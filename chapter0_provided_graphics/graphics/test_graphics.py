@@ -10,15 +10,16 @@ from circle import Circle
 from config import _root
 
 
-def update():
-    _root.update()
-
-
-def color_rgb(r, g, b):
-    """r,g,b are intensities of red, green, and blue in range(256)
-    Returns color specifier string for the resulting color
-    """
-    return "#%02x%02x%02x" % (r, g, b)
+# def update():
+#     _root.update()
+#
+#
+# def color_rgb(r, g, b):
+#     """r,g,b are intensities of red, green, and blue in range(256).
+#     This returns a color specifier string for the resulting color.
+#     """
+#
+#     return "#%02x%02x%02x" % (r, g, b)
 
 
 def test():

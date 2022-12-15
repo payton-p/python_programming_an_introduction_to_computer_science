@@ -1,6 +1,6 @@
 # "Python creates a companion file with a .pyc extension. This is an intermediate file used by the Python
 # interpreter. Technically, Python uses a hybrid compiling/interpreting process. The Python source in the
-# module file is compiled into more primitve instructions called byte code. This byte code (the .pyc file)
+# module file is compiled into more primitive instructions called byte code. This byte code (the .pyc file)
 # is then interpreted." (pg. 14)
 
 # " . . . the chaos program illustrates an interesting phenomenon . . . you'll find that no matter what

@@ -11,5 +11,7 @@ def main():
     print("This print call shows how you can determine what comes at the end. The default is \\n, " +
           "but we are using k instead", end="k")
 
+    print("\n\nThis", "uses", "the", "separator", "option", sep="*")
+
 
 main()

@@ -6,6 +6,7 @@ This project correlates to the *Python Programming: An Introduction to Computer 
 - Download PyCharm
 - Clone repo locally 
 - Open projects in PyCharm (or IDLE if you prefer) 
+- In PyCharm, right click the graphics folder > Mark Directory as > Sources Root. You will get import errors if this is not done. 
 - Run the relevant program(s)
 
 ## Project details 

@@ -6,7 +6,7 @@ from chapter0_provided_graphics.graphics import Circle, GraphicsWindow, Image, L
 def main():
     # General note: getters/setters = accessors/mutators.
     # Two different variables can refer to the exact same object; changes made to the object through one variable will
-    # also be visible to the other.
+    # also be visible to the other. This is called aliasing. This should be avoided.
 
     # Set up graphics window
     window = GraphicsWindow("Testing Graphics", 600, 600)
@@ -39,6 +39,13 @@ def main():
     circle.draw(window)
     text = Text(circle_center, "Red Circle")
     text.draw(window)
+    window.get_mouse()  # Pause to view result
+
+    # Clone the object
+    blue_circle = circle.clone()  # clone the object to avoid an accidental alias
+    blue_circle.set_fill("blue")
+    blue_circle.draw(window)
+    blue_circle.move(30, 30)
     window.get_mouse()  # Pause to view result
 
     # Add an image, note tkinter was only working with gif

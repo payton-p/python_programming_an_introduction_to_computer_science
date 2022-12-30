@@ -2,6 +2,7 @@ from chapter0_provided_graphics.graphics import GraphicsWindow, Point, Rectangle
 
 
 def main():
+    # This gives Periodic Compound Interest, A = P(1 + r)^t
     print("This program plots the growth of a 10-year investment.")
 
     # Get principal and interest rate.
@@ -26,18 +27,18 @@ def main():
 
     # Draw a bar for each subsequent year
     for year in range(1, 11):
-        accumulated_value = principal * (1 + apr)
-        bar = Rectangle(Point(year, 0), Point(year + 1, accumulated_value))
+        accrued_amount = principal * (1 + apr)
+        bar = Rectangle(Point(year, 0), Point(year + 1, accrued_amount))
         bar.set_fill("green")
         bar.set_width(2)
         bar.draw(window)
-        principal = accumulated_value  # set new principal for the next loop
+        principal = accrued_amount  # set new principal for the next loop
 
-    # Format the end balance to 2 decimal places. Also, note how the scope is working for accumulated_value. This is
+    # Format the end balance to 2 decimal places. Also, note how the scope is working for accrued_amount. This is
     # unique. Explanation: In Python, for-loops use the scope they exist in and leave their defined loop-variable behind
     # in the surrounding scope. This also applies if we explicitly defined the for-loop variable in the global namespace
     # before. In this case, it will rebind the existing variable.
-    print("End balance: ${0:.2f}".format(accumulated_value))
+    print("End balance: ${0:.2f}".format(accrued_amount))
 
     window.get_mouse()  # Pause to view result
     window.close()

@@ -1,9 +1,10 @@
-import tkinter
 import time
+import tkinter
+
+from _config import _root, CLOSED_WINDOW_ERROR_MESSAGE
 from _graphics_error import _GraphicsError
 from _transform import _Transform
 from point import Point
-from _config import _root, CLOSED_WINDOW_ERROR_MESSAGE
 
 
 class GraphicsWindow(tkinter.Canvas):

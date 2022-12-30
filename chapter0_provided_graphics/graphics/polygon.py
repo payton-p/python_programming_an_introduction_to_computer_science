@@ -1,6 +1,6 @@
 from _graphics_object import _GraphicsObject
-from point import Point
 from graphics_window import GraphicsWindow
+from point import Point
 
 
 class Polygon(_GraphicsObject):

@@ -1,6 +1,6 @@
-import tkinter as tk
+import tkinter
 
-_root = tk.Tk()
+_root = tkinter.Tk()
 _root.withdraw()
 
 BAD_OPTION_ERROR_MESSAGE = "Illegal option value."

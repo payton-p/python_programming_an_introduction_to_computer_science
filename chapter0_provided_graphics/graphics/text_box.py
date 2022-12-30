@@ -1,7 +1,8 @@
 import tkinter as tk
-from _graphics_object import _GraphicsObject
-from _graphics_error import _GraphicsError
+
 from _config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE, _root
+from _graphics_error import _GraphicsError
+from _graphics_object import _GraphicsObject
 
 
 class TextBox(_GraphicsObject):

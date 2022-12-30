@@ -1,6 +1,6 @@
-from _graphics_error import _GraphicsError
 from _config import DEFAULT_CONFIG, OBJ_ALREADY_DRAWN_ERROR_MESSAGE, UNSUPPORTED_METHOD_ERROR_MESSAGE, _root, \
     CLOSED_WINDOW_ERROR_MESSAGE
+from _graphics_error import _GraphicsError
 
 
 class _GraphicsObject:

@@ -1,12 +1,12 @@
 # These classes were originally provided from the textbook and can be found free
 # here: https://mcsp.wartburg.edu/zelle/python/ppics2/index.html
 
+from circle import Circle
 from graphics_window import GraphicsWindow
 from point import Point
+from polygon import Polygon
 from text import Text
 from text_box import TextBox
-from polygon import Polygon
-from circle import Circle
 
 
 def test():

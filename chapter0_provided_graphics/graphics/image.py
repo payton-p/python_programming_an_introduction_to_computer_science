@@ -1,8 +1,9 @@
-import tkinter as tk
 import os
+import tkinter as tk
+
+from _config import _root
 from _graphics_object import _GraphicsObject
 from point import Point
-from _config import _root
 
 
 class Image(_GraphicsObject):

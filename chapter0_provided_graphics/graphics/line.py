@@ -1,6 +1,6 @@
 from _bounding_box import _BoundingBox
-from _graphics_error import _GraphicsError
 from _config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE
+from _graphics_error import _GraphicsError
 
 
 class Line(_BoundingBox):

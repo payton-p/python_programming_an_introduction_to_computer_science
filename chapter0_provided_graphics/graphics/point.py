@@ -1,9 +1,9 @@
-from graphics_object import GraphicsObject
+from _graphics_object import _GraphicsObject
 
 
-class Point(GraphicsObject):
+class Point(_GraphicsObject):
     def __init__(self, x, y):
-        GraphicsObject.__init__(self, ["outline", "fill"])
+        _GraphicsObject.__init__(self, ["outline", "fill"])
         self.set_fill = self.set_outline
         self.x = x
         self.y = y

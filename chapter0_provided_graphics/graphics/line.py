@@ -1,6 +1,6 @@
 from _bounding_box import _BoundingBox
-from graphics_error import GraphicsError
-from config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE
+from _graphics_error import _GraphicsError
+from _config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE
 
 
 class Line(_BoundingBox):
@@ -25,6 +25,6 @@ class Line(_BoundingBox):
 
     def set_arrow(self, option):
         if option not in ["first", "last", "both", "none"]:
-            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
-        
+            raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
+
         self._reconfig("arrow", option)

@@ -1,12 +1,12 @@
 import tkinter as tk
-from graphics_object import GraphicsObject
-from graphics_error import GraphicsError
-from config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE, _root
+from _graphics_object import _GraphicsObject
+from _graphics_error import _GraphicsError
+from _config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE, _root
 
 
-class TextBox(GraphicsObject):
+class TextBox(_GraphicsObject):
     def __init__(self, point, width):
-        GraphicsObject.__init__(self, [])
+        _GraphicsObject.__init__(self, [])
         self.anchor = point.clone()
         self.width = width
         self.text = tk.StringVar(_root)
@@ -64,19 +64,19 @@ class TextBox(GraphicsObject):
         if face in ['helvetica', 'arial', 'courier', 'times roman']:
             self._set_font_component(0, face)
         else:
-            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
+            raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_size(self, size):
         if 5 <= size <= 36:
             self._set_font_component(1, size)
         else:
-            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
+            raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_style(self, style):
         if style in ['bold', 'normal', 'italic', 'bold italic']:
             self._set_font_component(2, style)
         else:
-            raise GraphicsError(BAD_OPTION_ERROR_MESSAGE)
+            raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_text_color(self, color):
         self.color = color

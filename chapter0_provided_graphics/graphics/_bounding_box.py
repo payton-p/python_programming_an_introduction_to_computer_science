@@ -1,8 +1,8 @@
-from graphics_object import GraphicsObject
+from _graphics_object import _GraphicsObject
 from point import Point
 
 
-class _BoundingBox(GraphicsObject):
+class _BoundingBox(_GraphicsObject):
     """Internal base class for objects represented by a bounding
     box (Line, Oval, Rectangle).
     """
@@ -11,7 +11,7 @@ class _BoundingBox(GraphicsObject):
         if options is None:
             options = ["outline", "width", "fill"]
 
-        GraphicsObject.__init__(self, options)
+        _GraphicsObject.__init__(self, options)
         self.p1 = p1.clone()
         self.p2 = p2.clone()
 

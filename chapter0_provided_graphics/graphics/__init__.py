@@ -1,4 +1,3 @@
-from _bounding_box import _BoundingBox
 from circle import Circle
 from graphics_window import GraphicsWindow
 from image import Image
@@ -9,3 +8,16 @@ from polygon import Polygon
 from rectangle import Rectangle
 from text import Text
 from text_box import TextBox
+
+__all__ = [
+    "Circle",
+    "GraphicsWindow",
+    "Image",
+    "Line",
+    "Oval",
+    "Point",
+    "Polygon",
+    "Rectangle",
+    "Text",
+    "TextBox"
+]

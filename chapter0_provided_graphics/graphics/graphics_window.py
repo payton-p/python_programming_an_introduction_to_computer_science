@@ -1,9 +1,9 @@
 import tkinter as tk
 import time
-from graphics_error import GraphicsError
-from transform import Transform
+from _graphics_error import _GraphicsError
+from _transform import _Transform
 from point import Point
-from config import _root, CLOSED_WINDOW_ERROR_MESSAGE
+from _config import _root, CLOSED_WINDOW_ERROR_MESSAGE
 
 
 class GraphicsWindow(tk.Canvas):
@@ -34,7 +34,7 @@ class GraphicsWindow(tk.Canvas):
 
     def __check_open(self):
         if self.closed:
-            raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
+            raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
 
     def set_background(self, color):
         """Set background color of the window."""
@@ -48,7 +48,7 @@ class GraphicsWindow(tk.Canvas):
         lower-left corner to (x2,y2) in the upper-right corner.
         """
 
-        self.trans = Transform(self.width, self.height, x1, y1, x2, y2)
+        self.trans = _Transform(self.width, self.height, x1, y1, x2, y2)
 
     def close(self):
         """Close the window."""
@@ -104,7 +104,7 @@ class GraphicsWindow(tk.Canvas):
         while self.mouseX is None or self.mouseY is None:
             self.update()
             if self.is_closed():
-                raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
+                raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
             time.sleep(.1)  # give up thread
 
         x, y = self.to_world(self.mouseX, self.mouseY)
@@ -119,7 +119,7 @@ class GraphicsWindow(tk.Canvas):
         """
 
         if self.is_closed():
-            raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
+            raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
 
         self.update()
         if self.mouseX is not None and self.mouseY is not None:

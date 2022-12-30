@@ -1,16 +1,16 @@
 import tkinter as tk
 import os
-from graphics_object import GraphicsObject
+from _graphics_object import _GraphicsObject
 from point import Point
-from config import _root
+from _config import _root
 
 
-class Image(GraphicsObject):
+class Image(_GraphicsObject):
     idCount = 0
     imageCache = {}  # tkinter photoimages go here to avoid GC while drawn
 
     def __init__(self, p, *pixmap):
-        GraphicsObject.__init__(self, [])
+        _GraphicsObject.__init__(self, [])
         self.anchor = p.clone()
         self.imageId = Image.idCount
         Image.idCount = Image.idCount + 1
@@ -32,7 +32,7 @@ class Image(GraphicsObject):
 
     def undraw(self):
         del self.imageCache[self.imageId]  # allow gc of tkinter photoimage
-        GraphicsObject.undraw(self)
+        _GraphicsObject.undraw(self)
 
     def get_anchor(self):
         return self.anchor.clone()

@@ -1,4 +1,4 @@
-class Transform:
+class _Transform:
     """Internal class for 2-D coordinate transformations."""
 
     def __init__(self, w, h, xlow, ylow, xhigh, yhigh):

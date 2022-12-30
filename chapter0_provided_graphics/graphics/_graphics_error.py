@@ -1,4 +1,4 @@
-class GraphicsError(Exception):
+class _GraphicsError(Exception):
     """Generic error class for graphics module exceptions."""
-    
+
     pass

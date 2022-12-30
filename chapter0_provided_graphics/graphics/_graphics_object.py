@@ -1,9 +1,9 @@
-from graphics_error import GraphicsError
-from config import DEFAULT_CONFIG, OBJ_ALREADY_DRAWN_ERROR_MESSAGE, UNSUPPORTED_METHOD_ERROR_MESSAGE, _root, \
+from _graphics_error import _GraphicsError
+from _config import DEFAULT_CONFIG, OBJ_ALREADY_DRAWN_ERROR_MESSAGE, UNSUPPORTED_METHOD_ERROR_MESSAGE, _root, \
     CLOSED_WINDOW_ERROR_MESSAGE
 
 
-class GraphicsObject:
+class _GraphicsObject:
     """Generic base class for all drawable objects. A subclass
     of GraphicsObject should override _draw and _move methods.
     """
@@ -41,10 +41,10 @@ class GraphicsObject:
         """
 
         if self.canvas and not self.canvas.is_closed():
-            raise GraphicsError(OBJ_ALREADY_DRAWN_ERROR_MESSAGE)
+            raise _GraphicsError(OBJ_ALREADY_DRAWN_ERROR_MESSAGE)
 
         if graphwin.is_closed():
-            raise GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
+            raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
 
         self.canvas = graphwin
         self.id = self._draw(graphwin, self.config)
@@ -94,7 +94,7 @@ class GraphicsObject:
         """
 
         if option not in self.config:
-            raise GraphicsError(UNSUPPORTED_METHOD_ERROR_MESSAGE)
+            raise _GraphicsError(UNSUPPORTED_METHOD_ERROR_MESSAGE)
 
         options = self.config
         options[option] = setting

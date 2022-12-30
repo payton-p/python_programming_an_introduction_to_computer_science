@@ -15,7 +15,7 @@ class _Transform:
     def get_screen_coords(self, x, y):
         """Return x,y in screen (actual window) coordinates."""
 
-        xs = (x - self.xbase) / self.xscale
+        xs = (x - self.xbase) / self.xscale  # the "s" in xs is referencing the x screen coordinate, same for y
         ys = (self.ybase - y) / self.yscale
 
         return int(xs + 0.5), int(ys + 0.5)

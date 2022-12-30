@@ -23,13 +23,15 @@ class GraphicsWindow(tkinter.Canvas):
         master = tkinter.Toplevel(_root)
         master.protocol("WM_DELETE_WINDOW", self.close)
         tkinter.Canvas.__init__(self, master, width=width, height=height)
+        master.resizable(None, None)
+        master.lift()
+
         self.master.title(title)
         self.pack()
-        master.resizable(None, None)
         self.foreground = "black"
         self.items = []
-        self.mouseX = None
-        self.mouseY = None
+        self.mouse_x = None
+        self.mouse_y = None
         self.bind("<Button-1>", self._on_click)
         self.height = height
         self.width = width
@@ -37,7 +39,6 @@ class GraphicsWindow(tkinter.Canvas):
         self._mouseCallback = None
         self.transform = None
         self.closed = False
-        master.lift()
 
         if autoflush:
             _root.update()
@@ -108,7 +109,7 @@ class GraphicsWindow(tkinter.Canvas):
         """
 
         self.__check_open()
-        xs, ys = self.get_screen_coords(x, y)
+        xs, ys = self.get_screen_coords(x, y)  # the "s" in xs is referencing the x screen coordinate, same for y
         self.create_line(xs, ys, xs + 1, ys, fill=color)
         self.__autoflush()
 
@@ -137,17 +138,17 @@ class GraphicsWindow(tkinter.Canvas):
         """
 
         self.update()  # flush any prior clicks
-        self.mouseX = None
-        self.mouseY = None
-        while self.mouseX is None or self.mouseY is None:
+        self.mouse_x = None
+        self.mouse_y = None
+        while self.mouse_x is None or self.mouse_y is None:
             self.update()
             if self.is_closed():
                 raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
             time.sleep(.1)  # give up thread
 
-        x, y = self.get_world_coords(self.mouseX, self.mouseY)
-        self.mouseX = None
-        self.mouseY = None
+        x, y = self.get_world_coords(self.mouse_x, self.mouse_y)
+        self.mouse_x = None
+        self.mouse_y = None
 
         return Point(x, y)
 
@@ -158,10 +159,10 @@ class GraphicsWindow(tkinter.Canvas):
             raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)
 
         self.update()
-        if self.mouseX is not None and self.mouseY is not None:
-            x, y = self.get_world_coords(self.mouseX, self.mouseY)
-            self.mouseX = None
-            self.mouseY = None
+        if self.mouse_x is not None and self.mouse_y is not None:
+            x, y = self.get_world_coords(self.mouse_x, self.mouse_y)
+            self.mouse_x = None
+            self.mouse_y = None
 
             return Point(x, y)
         else:
@@ -180,8 +181,7 @@ class GraphicsWindow(tkinter.Canvas):
     def get_screen_coords(self, x, y):
         """Get the screen (actual window) coordinates."""
 
-        transform = self.transform
-        if transform:
+        if self.transform:
             return self.transform.get_screen_coords(x, y)
         else:
             return x, y
@@ -195,8 +195,7 @@ class GraphicsWindow(tkinter.Canvas):
         system for the overall model, (generally in 3D), to which all other model coordinates relate.
         """
 
-        transform = self.transform
-        if transform:
+        if self.transform:
             return self.transform.get_world_coords(x, y)
         else:
             return x, y
@@ -204,7 +203,7 @@ class GraphicsWindow(tkinter.Canvas):
     def _on_click(self, event):
         """Define the on click event behavior."""
 
-        self.mouseX = event.x
-        self.mouseY = event.y
+        self.mouse_x = event.x
+        self.mouse_y = event.y
         if self._mouseCallback:
             self._mouseCallback(Point(event.x, event.y))

@@ -27,7 +27,7 @@ class Image(_GraphicsObject):
 
     def _draw(self, canvas, options):
         p = self.anchor
-        x, y = canvas.to_screen(p.x, p.y)
+        x, y = canvas.get_screen_coords(p.x, p.y)
         self.imageCache[self.imageId] = self.img  # save a reference
 
         return canvas.create_image(x, y, image=self.img)

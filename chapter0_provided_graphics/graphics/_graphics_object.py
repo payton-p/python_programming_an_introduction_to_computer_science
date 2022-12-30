@@ -70,10 +70,10 @@ class _GraphicsObject:
         self._move(dx, dy)
         canvas = self.canvas
         if canvas and not canvas.is_closed():
-            trans = canvas.trans
-            if trans:
-                x = dx / trans.xscale
-                y = -dy / trans.yscale
+            transform = canvas.transform
+            if transform:
+                x = dx / transform.xscale
+                y = -dy / transform.yscale
             else:
                 x = dx
                 y = dy

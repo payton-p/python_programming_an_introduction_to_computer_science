@@ -27,7 +27,7 @@ class Polygon(_GraphicsObject):
     def _draw(self, canvas, options):
         args = [canvas]
         for p in self.points:
-            x, y = canvas.to_screen(p.x, p.y)
+            x, y = canvas.get_screen_coords(p.x, p.y)
             args.append(x)
             args.append(y)
         args.append(options)

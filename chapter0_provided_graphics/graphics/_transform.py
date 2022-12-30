@@ -12,7 +12,7 @@ class _Transform:
         self.xscale = xspan / float(w - 1)
         self.yscale = yspan / float(h - 1)
 
-    def screen(self, x, y):
+    def get_screen_coords(self, x, y):
         """Return x,y in screen (actual window) coordinates."""
 
         xs = (x - self.xbase) / self.xscale
@@ -20,8 +20,14 @@ class _Transform:
 
         return int(xs + 0.5), int(ys + 0.5)
 
-    def world(self, xs, ys):
-        """Return xs,ys in world coordinates."""
+    def get_world_coords(self, xs, ys):
+        """
+        Return xs,ys in world coordinates.
+
+        World Coordinates: The positions of collections of points (objects) relative to a single shared standard
+        zero point. Also known as the "universe" or sometimes "model" coordinate system. This is the base reference
+        system for the overall model, (generally in 3D), to which all other model coordinates relate.
+        """
 
         x = xs * self.xscale + self.xbase
         y = self.ybase - ys * self.yscale

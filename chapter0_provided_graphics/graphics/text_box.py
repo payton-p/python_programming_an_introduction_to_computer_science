@@ -18,7 +18,7 @@ class TextBox(_GraphicsObject):
 
     def _draw(self, canvas, options):
         p = self.anchor
-        x, y = canvas.to_screen(p.x, p.y)
+        x, y = canvas.get_screen_coords(p.x, p.y)
         frm = tk.Frame(canvas.master)
         self.text_box = tk.Entry(frm, width=self.width, textvariable=self.text, bg=self.fill, fg=self.color,
                                  font=self.font)

@@ -9,7 +9,7 @@ class Point(_GraphicsObject):
         self.y = y
 
     def _draw(self, canvas, options):
-        x, y = canvas.to_screen(self.x, self.y)
+        x, y = canvas.get_screen_coords(self.x, self.y)
 
         return canvas.create_rectangle(x, y, x + 1, y + 1, options)
 

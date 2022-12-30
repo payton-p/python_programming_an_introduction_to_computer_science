@@ -9,9 +9,14 @@ class Image(_GraphicsObject):
     idCount = 0
     imageCache = {}  # tkinter photoimages go here to avoid GC while drawn
 
-    def __init__(self, p, *pixmap):
+    def __init__(self, anchor_point, *pixmap):
+        """Construct an image from the given file, centered at the given anchor point. The second argument can be the
+        filename or width and height parameters. If it's called with width and height parameters, a blank (transparent)
+        image is created with the given width and height (in pixels).
+        """
+
         _GraphicsObject.__init__(self, [])
-        self.anchor = p.clone()
+        self.anchor = anchor_point.clone()
         self.imageId = Image.idCount
         Image.idCount = Image.idCount + 1
         if len(pixmap) == 1:  # file name provided
@@ -56,9 +61,7 @@ class Image(_GraphicsObject):
         return self.img.height()
 
     def get_pixel(self, x, y):
-        """Return a list [r,g,b] with the RGB color values for pixel (x,y)
-        r,g,b are in range(256).
-        """
+        """Return a list [r,g,b] with the RGB color values for pixel (x,y) r,g,b are in range(256)."""
 
         value = self.img.get(x, y)
         if isinstance(value, type(0)):
@@ -72,8 +75,8 @@ class Image(_GraphicsObject):
         self.img.put("{" + color + "}", (x, y))
 
     def save(self, filename):
-        """Save the pixmap image to filename. The format for the save image is
-        determined from the filename extension.
+        """Save the pixmap image to filename. The format for the save image is determined from the filename
+        extension.
         """
 
         path, name = os.path.split(filename)

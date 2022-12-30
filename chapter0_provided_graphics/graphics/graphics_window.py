@@ -44,8 +44,8 @@ class GraphicsWindow(tk.Canvas):
         self.__autoflush()
 
     def set_coords(self, x1, y1, x2, y2):
-        """Set coordinates of window to run from (x1,y1) in the
-        lower-left corner to (x2,y2) in the upper-right corner.
+        """Set coordinates of window to run from (x1,y1) in the lower-left corner to (x2,y2) in the upper-right
+        corner.
         """
 
         self.trans = _Transform(self.width, self.height, x1, y1, x2, y2)
@@ -79,9 +79,7 @@ class GraphicsWindow(tk.Canvas):
         self.__autoflush()
 
     def plot_pixel(self, x, y, color="black"):
-        """Set pixel raw (independent of window coordinates) pixel
-        (x,y) to given color.
-        """
+        """Set pixel raw (independent of window coordinates) pixel (x,y) to given color."""
 
         self.__check_open()
         self.create_line(x, y, x + 1, y, fill=color)
@@ -94,9 +92,7 @@ class GraphicsWindow(tk.Canvas):
         self.update_idletasks()
 
     def get_mouse(self):
-        """Wait for mouse click and return Point object representing
-        the click.
-        """
+        """Wait for mouse click and return Point object representing the click."""
 
         self.update()  # flush any prior clicks
         self.mouseX = None
@@ -114,9 +110,7 @@ class GraphicsWindow(tk.Canvas):
         return Point(x, y)
 
     def check_mouse(self):
-        """Return last mouse click or None if mouse has
-        not been clicked since last call.
-        """
+        """Return last mouse click or None if mouse has not been clicked since last call."""
 
         if self.is_closed():
             raise _GraphicsError(CLOSED_WINDOW_ERROR_MESSAGE)

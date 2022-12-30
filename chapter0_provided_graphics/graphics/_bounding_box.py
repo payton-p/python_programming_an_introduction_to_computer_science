@@ -3,9 +3,7 @@ from point import Point
 
 
 class _BoundingBox(_GraphicsObject):
-    """Internal base class for objects represented by a bounding
-    box (Line, Oval, Rectangle).
-    """
+    """Internal base class for objects represented by a bounding box (Line, Oval, Rectangle)."""
 
     def __init__(self, p1, p2, options=None):
         if options is None:

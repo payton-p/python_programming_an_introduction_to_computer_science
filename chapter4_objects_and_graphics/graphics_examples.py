@@ -39,6 +39,9 @@ def main():
     circle.draw(window)
     text = Text(circle_center, "Red Circle")
     text.draw(window)
+    text.set_font_face("times roman")
+    text.set_font_size(20)
+    text.set_font_style("bold")
     window.get_mouse()  # Pause to view result
 
     # Clone the object

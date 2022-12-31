@@ -29,9 +29,9 @@ def test():
 
     # Display text
     text = Text(Point(400, 400), "Showing off my Text class")
-    text.set_size(14)
-    text.set_face("arial")
-    text.set_style("bold italic")
+    text.set_font_size(14)
+    text.set_font_face("arial")
+    text.set_font_style("bold italic")
     text.draw(window)
     window.get_mouse()  # Pause to view result
 

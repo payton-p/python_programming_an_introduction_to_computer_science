@@ -14,7 +14,7 @@ class Circle(Oval):
         self.radius = radius
 
     def clone(self):
-        """Return a clone of the circle."""
+        """Return a clone of the object."""
 
         other = Circle(self.get_center(), self.radius)
         other.config = self.config.copy()

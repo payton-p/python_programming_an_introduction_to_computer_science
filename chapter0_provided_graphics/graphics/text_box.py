@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter
 
 from _config import DEFAULT_CONFIG, BAD_OPTION_ERROR_MESSAGE, _root
 from _graphics_error import _GraphicsError
@@ -6,80 +6,130 @@ from _graphics_object import _GraphicsObject
 
 
 class TextBox(_GraphicsObject):
-    def __init__(self, point, width):
+    """Objects of type TextBox are displayed as text boxes, where users can enter input."""
+
+    def __init__(self, anchor_point, width):
+        """
+        Construct a TextBox having the given center point and width.
+
+        The width is specified as the number of characters that can be displayed.
+        """
+
         _GraphicsObject.__init__(self, [])
-        self.anchor = point.clone()
+        self.anchor = anchor_point.clone()
         self.width = width
-        self.text = tk.StringVar(_root)
+        self.text = tkinter.StringVar(_root)
         self.text.set("")
-        self.fill = "gray"
-        self.color = "black"
-        self.font = DEFAULT_CONFIG['font']
+        self.background_color = "white"
+        self.text_color = "black"
+        self.font_config = DEFAULT_CONFIG['font']
         self.text_box = None
 
-    def _draw(self, canvas, options):
-        p = self.anchor
-        x, y = canvas.get_screen_coords(p.x, p.y)
-        frm = tk.Frame(canvas.master)
-        self.text_box = tk.Entry(frm, width=self.width, textvariable=self.text, bg=self.fill, fg=self.color,
-                                 font=self.font)
-        self.text_box.pack()
-        self.set_fill(self.fill)
-
-        return canvas.create_window(x, y, window=frm)
-
-    def get_text(self):
-        return self.text.get()
-
-    def _move(self, dx, dy):
-        self.anchor.move(dx, dy)
-
     def get_anchor(self):
+        """Return a clone of the anchor point."""
+
         return self.anchor.clone()
 
     def clone(self):
+        """Return a clone of the object."""
+
         other = TextBox(self.anchor, self.width)
         other.config = self.config.copy()
-        other.text = tk.StringVar()
+        other.text = tkinter.StringVar()
         other.text.set(self.text.get())
-        other.fill = self.fill
+        other.background_color = self.background_color
 
         return other
 
+    def get_text(self):
+        """Return the value of text."""
+
+        return self.text.get()
+
     def set_text(self, t):
+        """Set the value of text."""
+
         self.text.set(t)
 
     def set_fill(self, color):
-        self.fill = color
+        """Set background color."""
+
+        self.background_color = color
         if self.text_box:
             self.text_box.config(bg=color)
 
-    def _set_font_component(self, which, value):
-        font = list(self.font)
-        font[which] = value
-        self.font = tuple(font)
-        if self.text_box:
-            self.text_box.config(font=self.font)
+    def set_font_face(self, typeface):
+        """
+        Change the font face to the given family.
 
-    def set_face(self, face):
-        if face in ['helvetica', 'arial', 'courier', 'times roman']:
-            self._set_font_component(0, face)
+        Possible values are: "helvetica", "courier", "times roman", and "arial".
+        """
+
+        if typeface in ['helvetica', 'arial', 'courier', 'times roman']:
+            self._set_font_config(0, typeface)
         else:
             raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
-    def set_size(self, size):
+    def set_font_size(self, size):
+        """
+        Change the font size to the given point size.
+
+        Sizes from 5 to 36 are legal.
+        """
+
         if 5 <= size <= 36:
-            self._set_font_component(1, size)
+            self._set_font_config(1, size)
         else:
             raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
-    def set_style(self, style):
+    def set_font_style(self, style):
+        """
+        Change font to the given style.
+
+        Possible values are "normal", "bold", "italic", and "bold italic".
+        """
+
         if style in ['bold', 'normal', 'italic', 'bold italic']:
-            self._set_font_component(2, style)
+            self._set_font_config(2, style)
         else:
             raise _GraphicsError(BAD_OPTION_ERROR_MESSAGE)
 
     def set_text_color(self, color):
-        self.color = color
+        """Set the color of the text."""
+
+        self.text_color = color
         if self.text_box:
             self.text_box.config(fg=color)
+
+    def _set_font_config(self, index, value):
+        """Set the font config."""
+
+        font_config = list(self.font_config)
+        font_config[index] = value
+        self.font_config = tuple(font_config)
+        if self.text_box:
+            self.text_box.config(font=self.font_config)
+
+    def _draw(self, canvas, options):
+        """Draw the object in a GraphicsWindow."""
+
+        point = self.anchor
+        x, y = canvas.get_screen_coords(point.x, point.y)
+        
+        frame = tkinter.Frame(canvas.master)
+        w = self.width
+        text = self.text
+        bg_color = self.background_color
+        text_color = self.text_color
+        font_config = self.font_config
+        self.text_box = tkinter.Entry(frame, width=w, textvariable=text, bg=bg_color, fg=text_color, font=font_config)
+
+        self.text_box.pack()
+        self.set_fill(self.background_color)
+
+        return canvas.create_window(x, y, window=frame)
+
+    def _move(self, dx, dy):
+        """Update internal state of object to move it dx,dy units."""
+
+        self.anchor.move(dx, dy)

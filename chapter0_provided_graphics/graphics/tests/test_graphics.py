@@ -19,7 +19,6 @@ def test():
     text_box = TextBox(Point(200, 300), 30)
     text_box.set_text("Placeholder text . . . ")
     text_box.set_text_color("#333333")
-    text_box.set_fill("white")
     text_box.draw(window)
 
     # Draw a circle

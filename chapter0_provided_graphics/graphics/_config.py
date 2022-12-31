@@ -9,8 +9,8 @@ DEAD_THREAD_ERROR_MESSAGE = "Graphics thread quit unexpectedly."
 OBJ_ALREADY_DRAWN_ERROR_MESSAGE = "Object currently drawn."
 UNSUPPORTED_METHOD_ERROR_MESSAGE = "Object doesn't support operation."
 
-# Default values for various item configuration options. Only a subset of
-# keys may be present in the configuration dictionary for a given item.
+# Default values for various item configuration options. Only a subset of keys may be present in the configuration
+# dictionary for a given item.
 DEFAULT_CONFIG = {
     "fill": "",
     "outline": "black",

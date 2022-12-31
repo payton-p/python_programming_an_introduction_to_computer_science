@@ -4,14 +4,18 @@ from _graphics_error import _GraphicsError
 
 
 class _GraphicsObject:
-    """Generic base class for all drawable objects. A subclass of GraphicsObject should override _draw and _move
-    methods.
+    """
+    Generic base class for all drawable objects.
+
+    A subclass of GraphicsObject should override _draw and _move methods.
     """
 
     def __init__(self, options):
-        self.canvas = None  # When an object is drawn, canvas is set to the GraphicsWindow(canvas) object
+        """Construct a new _GraphicsObject object."""
+
+        self.canvas = None  # when an object is drawn, canvas is set to the GraphicsWindow(canvas) object
         self.id = None  # id is the tkinter identifier of the drawn shape
-        config = {}  # config is the dictionary of configuration options for the widget.
+        config = {}  # config is the dictionary of configuration options for the widget
 
         # options is a list of strings indicating which options are legal for this object.
         for option in options:
@@ -29,13 +33,16 @@ class _GraphicsObject:
         self._reconfig("outline", color)
 
     def set_width(self, width):
-        """Set line weight to width."""
+        """Set the line weight to the given width."""
 
         self._reconfig("width", width)
 
     def draw(self, graphwin):
-        """Draw the object, which will be done in a GraphicsWindow. A GraphicsObject can only be drawn into one window.
-        An error is raised if an attempt is made to draw an object that is already visible.
+        """
+        Draw the object in a GraphicsWindow.
+
+        A GraphicsObject can only be drawn into one window. An error is raised if an attempt is made to draw an object
+        that is already visible.
         """
 
         if self.canvas and not self.canvas.is_closed():
@@ -51,7 +58,7 @@ class _GraphicsObject:
             _root.update()
 
     def undraw(self):
-        """Undraw the object, i.e., hide it. Returns silently if the object is not currently drawn."""
+        """Undraw the object, i.e., hide it. Return silently if the object is not currently drawn."""
 
         if not self.canvas:
             return
@@ -72,18 +79,20 @@ class _GraphicsObject:
         if canvas and not canvas.is_closed():
             transform = canvas.transform
             if transform:
-                x = dx / transform.xscale
-                y = -dy / transform.yscale
+                x = dx / transform.x_scale
+                y = -dy / transform.y_scale
             else:
                 x = dx
                 y = dy
 
             self.canvas.move(self.id, x, y)
+            
             if canvas.autoflush:
                 _root.update()
 
     def _reconfig(self, option, setting):
-        """Internal method for changing configuration of the object. Raises an error if the option does not exist in the
+        """
+        Internal method for changing configuration of the object. Raises an error if the option does not exist in the
         config dictionary for this object.
         """
 
@@ -98,11 +107,11 @@ class _GraphicsObject:
                 _root.update()
 
     def _draw(self, canvas, options):
-        """Draws appropriate figure on canvas with options provided. Returns tkinter id of item drawn."""
+        """Draw appropriate figure on canvas with options provided. Return tkinter id of item drawn."""
 
         pass  # must override in subclass
 
     def _move(self, dx, dy):
-        """Updates internal state of object to move it dx,dy units."""
+        """Update internal state of object to move it dx,dy units."""
 
         pass  # must override in subclass

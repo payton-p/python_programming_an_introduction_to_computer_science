@@ -1,6 +1,13 @@
 from chapter0_provided_graphics.graphics import GraphicsWindow, Point, Rectangle, Text
 
 
+def draw_bar(window, year, height):
+    bar = Rectangle(Point(year, 0), Point(year + 1, height))
+    bar.set_fill("green")
+    bar.set_width(2)
+    bar.draw(window)
+
+
 def main():
     # This gives Periodic Compound Interest, A = P(1 + r)^t.
     print("This program plots the growth of a 10-year investment.")
@@ -20,18 +27,12 @@ def main():
     Text(Point(-1, 10000), '10.0K').draw(window)
 
     # Draw bar for initial principal.
-    bar = Rectangle(Point(0, 0), Point(1, principal))
-    bar.set_fill("green")
-    bar.set_width(2)
-    bar.draw(window)
+    draw_bar(window, 0, principal)
 
     # Draw a bar for each subsequent year.
     for year in range(1, 11):
         accrued_amount = principal * (1 + apr)
-        bar = Rectangle(Point(year, 0), Point(year + 1, accrued_amount))
-        bar.set_fill("green")
-        bar.set_width(2)
-        bar.draw(window)
+        draw_bar(window, year, accrued_amount)
         principal = accrued_amount  # set new principal for the next loop
 
     # Format the end balance to 2 decimal places. Also, note how the scope is working for accrued_amount. This is

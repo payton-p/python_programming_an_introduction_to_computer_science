@@ -23,4 +23,5 @@ def main():
     print("Average: " + str(average))
 
 
-main()
+if __name__ == "__main__":
+    main()

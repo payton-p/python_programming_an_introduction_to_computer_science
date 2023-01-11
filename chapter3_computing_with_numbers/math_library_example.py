@@ -40,4 +40,5 @@ def main():
     print(10 % -3)  # = -2
 
 
-main()
+if __name__ == "__main__":
+    main()

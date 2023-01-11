@@ -22,4 +22,5 @@ def main():
         "interpreter changes the attribute name to avoid naming collisions in subclasses.\n")
 
 
-main()
+if __name__ == "__main__":
+    main()

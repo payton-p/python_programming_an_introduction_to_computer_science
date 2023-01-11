@@ -7,4 +7,5 @@ def main():
     print(str(n) + "! = " + str(factorial))
 
 
-main()
+if __name__ == "__main__":
+    main()

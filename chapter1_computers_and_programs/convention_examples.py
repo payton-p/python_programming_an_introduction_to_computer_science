@@ -7,4 +7,5 @@ def main():
           "does not have strong distinctions between “private” and “public” variables like Java does.")
 
 
-main()
+if __name__ == "__main__":
+    main()

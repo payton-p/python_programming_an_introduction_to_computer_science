@@ -16,4 +16,5 @@ def main():
     print(list(range(3)))  # turns it into an explicit list
 
 
-main()
+if __name__ == "__main__":
+    main()

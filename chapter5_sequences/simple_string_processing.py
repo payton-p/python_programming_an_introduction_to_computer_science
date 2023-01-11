@@ -19,4 +19,5 @@ def main():
         print(character)
 
 
-main()
+if __name__ == "__main__":
+    main()

@@ -14,4 +14,5 @@ def main():
     print("\n\nThis", "uses", "the", "separator", "option", sep="*")
 
 
-main()
+if __name__ == "__main__":
+    main()

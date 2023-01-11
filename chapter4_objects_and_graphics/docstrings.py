@@ -36,4 +36,5 @@ def main():
     print(multi_line_docstring_example.__doc__)
 
 
-main()
+if __name__ == "__main__":
+    main()

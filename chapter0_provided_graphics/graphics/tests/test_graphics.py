@@ -9,7 +9,7 @@ from text import Text
 from text_box import TextBox
 
 
-def test():
+def main():
     print("Testing graphics")
 
     # Set up graphics window
@@ -71,4 +71,4 @@ def test():
 
 
 if __name__ == "__main__":
-    test()
+    main()

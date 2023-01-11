@@ -10,4 +10,5 @@ def main():
     # will be visible to the caller when the function returns.
 
 
-main()
+if __name__ == "__main__":
+    main()

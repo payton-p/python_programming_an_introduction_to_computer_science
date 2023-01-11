@@ -9,4 +9,5 @@ def main():
     print("Evaluated to: " + str(expression_input))
 
 
-main()
+if __name__ == "__main__":
+    main()

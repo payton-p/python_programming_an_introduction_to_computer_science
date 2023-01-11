@@ -30,4 +30,5 @@ def main():
     read_and_write_file()
 
 
-main()
+if __name__ == "__main__":
+    main()

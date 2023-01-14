@@ -1,5 +1,5 @@
 from random import randrange
-from chapter0_provided_graphics.graphics import GraphicsWindow, Point
+from chapter00_provided_graphics.graphics import GraphicsWindow, Point
 from button import Button
 from die import Die
 

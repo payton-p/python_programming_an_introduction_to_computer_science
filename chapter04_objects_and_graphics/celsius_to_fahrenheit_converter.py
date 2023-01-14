@@ -1,4 +1,4 @@
-from chapter0_provided_graphics.graphics import GraphicsWindow, Point, Rectangle, Text, TextBox
+from chapter00_provided_graphics.graphics import GraphicsWindow, Point, Rectangle, Text, TextBox
 
 
 # Program to convert Celsius to Fahrenheit using a simple GUI.

@@ -1,4 +1,4 @@
-from chapter0_provided_graphics.graphics import Circle, Point, Rectangle
+from chapter00_provided_graphics.graphics import Circle, Point, Rectangle
 
 
 class Die:

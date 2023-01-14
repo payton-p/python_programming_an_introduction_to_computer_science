@@ -1,4 +1,4 @@
-from chapter0_provided_graphics.graphics import GraphicsWindow, Point, Polygon, Text
+from chapter00_provided_graphics.graphics import GraphicsWindow, Point, Polygon, Text
 
 
 def main():

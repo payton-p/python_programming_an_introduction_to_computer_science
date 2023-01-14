@@ -1,4 +1,4 @@
-from chapter0_provided_graphics.graphics import Circle, GraphicsWindow, Image, Line, Oval, Point, Polygon, Rectangle, \
+from chapter00_provided_graphics.graphics import Circle, GraphicsWindow, Image, Line, Oval, Point, Polygon, Rectangle, \
     Text, TextBox
 
 

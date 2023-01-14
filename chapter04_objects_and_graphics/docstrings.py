@@ -1,4 +1,4 @@
-from chapter0_provided_graphics.graphics import GraphicsWindow
+from chapter00_provided_graphics.graphics import GraphicsWindow
 
 
 def multi_line_docstring_example(arg1):

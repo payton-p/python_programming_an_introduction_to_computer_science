@@ -1,4 +1,4 @@
-from chapter0_provided_graphics.graphics import GraphicsWindow, Point, Rectangle, Text
+from chapter00_provided_graphics.graphics import GraphicsWindow, Point, Rectangle, Text
 
 
 def draw_bar(window, year, height):

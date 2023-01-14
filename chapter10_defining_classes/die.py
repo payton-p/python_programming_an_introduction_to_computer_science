@@ -31,7 +31,7 @@ class Die:
         self.pip6 = self.__make_pip(center_x + offset, center_y)
         self.pip7 = self.__make_pip(center_x + offset, center_y + offset)
 
-        # Draw an initial value. 
+        # Draw an initial value.
         self.set_value(1)
 
     def __make_pip(self, x, y):

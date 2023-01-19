@@ -13,6 +13,9 @@ def main():
     number_list.append(13)
     print(number_list)
 
+    del number_list[2]
+    print(number_list)
+
 
 if __name__ == "__main__":
     main()

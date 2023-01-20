@@ -16,7 +16,7 @@ def binary_search(item_to_find, list_to_search):
 
 
 def main():
-    example_list = [2, 3, 5, 7]
+    example_list = [2, 3, 5, 7]  # must be a sorted list
     print(binary_search(3, example_list))
 
 
